@@ -170,7 +170,6 @@ public class CustomCameraView extends FrameLayout {
                 super.onPictureTaken(result);
                 result.toFile(initTakePicPath(mContext), file -> {
                     if (file == null || !file.exists()) {
-                        Toast.makeText(mContext, "文件不存在!", Toast.LENGTH_LONG).show();
                         return;
                     }
                     photoFile = file;
@@ -260,7 +259,6 @@ public class CustomCameraView extends FrameLayout {
                 mSwitchCamera.setVisibility(VISIBLE);
                 mFlashLamp.setVisibility(VISIBLE);
                 mCaptureLayout.resetCaptureLayout();
-                mCaptureLayout.setTextWithAnimation("录制时间过短");
                 mCameraView.stopVideo();
             }
 
@@ -278,7 +276,7 @@ public class CustomCameraView extends FrameLayout {
             @Override
             public void recordError() {
                 if (flowCameraListener != null) {
-                    flowCameraListener.onError(0, "未知原因!", null);
+                    flowCameraListener.onError(0, "error", null);
                 }
             }
         });

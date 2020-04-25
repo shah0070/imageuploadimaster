@@ -5,7 +5,8 @@ public class ImageViewEventBus {
     public static class Refresh {
         String processid;
         int completed;
-        public Refresh(String processid,int completed) {
+
+        public Refresh(String processid, int completed) {
             this.processid = processid;
             this.completed = completed;
         }

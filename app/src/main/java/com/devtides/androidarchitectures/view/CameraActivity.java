@@ -36,25 +36,24 @@ public class CameraActivity extends AppCompatActivity {
         flowCamera.setCaptureMode(BUTTON_STATE_ONLY_CAPTURE);
         flowCamera.setHdrEnable(Hdr.ON);
         flowCamera.setRecordVideoMaxTime(10);
-        flowCamera.setFlowCameraListener(new FlowCameraListener(){
+        flowCamera.setFlowCameraListener(new FlowCameraListener() {
 
             @Override
             public void captureSuccess(@NonNull File file) {
-            //    Toast.makeText(CameraActivity.this, ""+file.getName(), Toast.LENGTH_SHORT).show();
-                UCrop uCrop = UCrop.of(Uri.parse(file.getAbsoluteFile().toURI().toString()), Uri.fromFile(new File(getCacheDir(), Calendar.getInstance().getTimeInMillis()+".jpeg")));
+                UCrop uCrop = UCrop.of(Uri.parse(file.getAbsoluteFile().toURI().toString()), Uri.fromFile(new File(getCacheDir(), Calendar.getInstance().getTimeInMillis() + ".jpeg")));
                 uCrop.start(CameraActivity.this);
 
             }
 
             @Override
             public void recordSuccess(@NonNull File file) {
-                Toast.makeText(CameraActivity.this, ""+file.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CameraActivity.this, "" + file.getName(), Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
-                Toast.makeText(CameraActivity.this, ""+message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CameraActivity.this, "" + message, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,7 +72,7 @@ public class CameraActivity extends AppCompatActivity {
 
             final Uri resultUri = UCrop.getOutput(data);
             Intent resultIntent = new Intent();
-            setResult(Activity.RESULT_OK,resultIntent.putExtra("data",new File(resultUri.getPath()).getAbsolutePath()));
+            setResult(Activity.RESULT_OK, resultIntent.putExtra("data", new File(resultUri.getPath()).getAbsolutePath()));
             finish();
             Toast.makeText(CameraActivity.this, "" + resultUri, Toast.LENGTH_SHORT).show();
         } else if (resultCode == UCrop.RESULT_ERROR) {

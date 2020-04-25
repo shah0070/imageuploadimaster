@@ -21,7 +21,6 @@ public class Apputil {
                     context,
                     Constants.IDENTITY_POOL_ID, // Identity Pool ID
                     Regions.AP_SOUTH_1
-                    //Regions.AP_NORTHEAST_1 // Region
             );
         }
 

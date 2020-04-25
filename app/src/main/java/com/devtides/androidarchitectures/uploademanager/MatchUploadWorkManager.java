@@ -20,6 +20,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.devtides.androidarchitectures.AppApplication;
+import com.devtides.androidarchitectures.repository.DatabaseRepository;
 import com.devtides.androidarchitectures.util.Constants;
 import com.devtides.androidarchitectures.wrapperclass.ImageViewEventBus;
 import com.devtides.androidarchitectures.RoomDB.entities.MediaUploadDetailsTable;
@@ -28,11 +29,14 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
 import static com.devtides.androidarchitectures.util.Apputil.getCredentialsProvider;
 import static com.devtides.androidarchitectures.util.Apputil.getS3;
 import static com.devtides.androidarchitectures.util.Apputil.getTransferService;
 
 public class MatchUploadWorkManager extends Worker {
+
 
     public MatchUploadWorkManager(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -41,7 +45,6 @@ public class MatchUploadWorkManager extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String title = getInputData().getString("data");
 
         try {
             if (AppApplication.getImageViewDatabase().getMediaUploadDetailsDao().getincompletetasklist(0) != null &&
@@ -76,7 +79,6 @@ public class MatchUploadWorkManager extends Worker {
         File file = new File(Uri.parse(imageUri).getPath());
 
 
-//https://s3.ap-south-1.amazonaws.com/funngage/1587825619440
 
         final TransferObserver uploadObserver = transferUtility.upload(
                 Constants.BUCKET_NAME,     /* The bucket to upload to */
@@ -120,7 +122,6 @@ public class MatchUploadWorkManager extends Worker {
             float uplosdedbytes;
             @Override
             public void onProgressChanged(int i, long bytesCurrent, long bytesTotal) {
-                Log.i("UploadImagess3", " ---------------" + i);
                 float uplosdedbytes = ((float) bytesCurrent / (float) bytesTotal) * 100;
                 this.bytesTotal=bytesTotal;
                 this.uplosdedbytes=uplosdedbytes;
@@ -129,7 +130,6 @@ public class MatchUploadWorkManager extends Worker {
 
             @Override
             public void onError(int i, Exception e) {
-                Log.i("UploadImagess3", "Transfer Failed " + e);
                 uploadImagesUsingS3(mediaUploadDetailsTable);
             }
 

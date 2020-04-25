@@ -318,15 +318,12 @@ public class CaptureLayout extends FrameLayout {
     private void switchTextTip(int state) {
         switch (state) {
             case BUTTON_STATE_BOTH:
-                textTip = "单击拍照，长按摄像";
                 txt_tip.setText(textTip);
                 break;
             case BUTTON_STATE_ONLY_CAPTURE:
-                textTip = "单击拍照";
                 txt_tip.setText(textTip);
                 break;
             case BUTTON_STATE_ONLY_RECORDER:
-                textTip = "长按摄像";
                 txt_tip.setText(textTip);
                 break;
         }

@@ -137,7 +137,6 @@ public class FlowCameraView extends FrameLayout {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         if (!photoFile.exists()) {
-                            Toast.makeText(mContext, "图片保存出错!", Toast.LENGTH_LONG).show();
                             return;
                         }
 
@@ -222,7 +221,6 @@ public class FlowCameraView extends FrameLayout {
                 mSwitchCamera.setVisibility(VISIBLE);
                 mFlashLamp.setVisibility(VISIBLE);
                 mCaptureLayout.resetCaptureLayout();
-                mCaptureLayout.setTextWithAnimation("录制时间过短");
                 mVideoView.stopRecording();
             }
 
@@ -240,7 +238,6 @@ public class FlowCameraView extends FrameLayout {
             @Override
             public void recordError() {
                 if (flowCameraListener != null) {
-                    flowCameraListener.onError(0, "未知原因!", null);
                 }
             }
         });
@@ -338,7 +335,6 @@ public class FlowCameraView extends FrameLayout {
     }
 
     /**
-     * 设置录制视频最大时长单位 s
      */
     public void setRecordVideoMaxTime(int maxDurationTime) {
         mCaptureLayout.setDuration(maxDurationTime * 1000);
@@ -346,7 +342,6 @@ public class FlowCameraView extends FrameLayout {
 
     /**
      * 设置拍摄模式分别是
-     * 单独拍照 单独摄像 或者都支持
      *
      * @param state
      */

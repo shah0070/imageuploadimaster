@@ -24,9 +24,6 @@ public interface MediaUploadDetailsDao {
     @Update
     int updateMediaDetails(MediaUploadDetailsTable mediaUploadDetailsTable);
 
-    @Query("SELECT * FROM MediaUploadDetailsTable WHERE processUid=:processUid AND isUploaded=:isUploaded")
-    List<MediaUploadDetailsTable> findMediaDetailsByProcessIdAndStatus(final String processUid, int isUploaded);
-
     @Query("SELECT * FROM MediaUploadDetailsTable WHERE  isUploaded=:isUploaded")
     List<MediaUploadDetailsTable> getincompletetasklist( int isUploaded);
 
@@ -34,16 +31,5 @@ public interface MediaUploadDetailsDao {
     MediaUploadDetailsTable findDataByUniqueMediaName(final String processUid);
 
 
-    @Query("DELETE FROM MediaUploadDetailsTable where processUid LIKE  :processUid")
-    void deleteMediaDetailsAfterUpload(String processUid);
-
-    @Query("SELECT * FROM MediaUploadDetailsTable")
-    List<MediaUploadDetailsTable> getAllMediaDetailsDataList();
-
-    @Query("DELETE FROM MediaUploadDetailsTable")
-    void deleteMediaDetailsTable();
-
-    @Query("SELECT * FROM MediaUploadDetailsTable WHERE processUid=:processUid AND mediaFileUri=:mediaFileUri")
-    List<MediaUploadDetailsTable> findMediaDetailsByProcessIdAndMediaFileUri(final String processUid, String mediaFileUri);
 
 }
