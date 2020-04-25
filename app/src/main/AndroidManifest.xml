@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.devtides.androidarchitectures">
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flashlight" />
+    <uses-permission android:name="android.hardware.camera.flash"/>
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".AppApplication"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.CameraActivity"/>
+        <activity android:name=".view.ImageViewActivity">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.MAIN"></action>
+                <category
+                    android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+<!--        <activity android:name=".mvp.MVPActivity" />-->
+<!--        <activity android:name=".mvc.MVCActivity" />-->
+<!--        <activity android:name=".assignment.ImageViewActivity" />-->
+
+
+        <!--        <service-->
+<!--            android:name=".MyService"/>-->
+<!-- <service-->
+<!--            android:name=".MyIntentService"/>-->
+
+    </application>
+
+</manifest>
